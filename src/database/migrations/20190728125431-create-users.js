@@ -24,15 +24,16 @@ module.exports = {
       },
       provider: {
         type: Sequelize.BOOLEAN,
-        defaltValue: false,
+
+        defaultValue: false,
         allowNull: false,
       },
-      creat_at: {
+      created_at: {
         // campos que irão armazena data/hora dos registros.
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updateed_at: {
+      updated_at: {
         // campo que favá o controle de version registra todas as alterações.
         type: Sequelize.DATE,
         allowNull: false,
