@@ -7,10 +7,10 @@ import databaseConfig from '../config/database';
 import User from '../app/models/User';
 
 /**
- * @var this.connection variável de conexão com base de dados.
+ * @var this.connection variável de conexão, que se conecta com base de dados.
  * @constant models é um array que armazena todos os Models da Aplicação.
- * @method init() Cria a conexão com banco de dados, chama cada método `init()` dos
- * respectivos *Models* da aplicação e passando como parâmtro a variável de conexão
+ * @method init() Cria a conexão com banco de dados, chamando cada método `init()` dos
+ * respectivos *Models* (User,Agendamento e etc) da aplicação repassando como parâmtro a variável de conexão
  * `this.connection`
  */
 
