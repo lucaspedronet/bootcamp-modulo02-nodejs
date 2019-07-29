@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import bcryptjs from 'bcryptjs';
 
 /**
  * @static init() Método static chamado automaticamente pelo Sequelize.
@@ -16,6 +17,7 @@ class User extends Model {
       {
         name: Sequelize.STRING,
         email: Sequelize.STRING,
+        password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
         provider: Sequelize.BOOLEAN,
       },
@@ -23,6 +25,20 @@ class User extends Model {
         sequelize,
       }
     );
+    /**
+     * @method addHook são basicamente trechos de códicos executados automaticamente, uma function baseado em ações que
+     * acontece em nosso model. por exemplo `beforeSave` nos permite executar o uma ação antes de um usuário ser criado
+     * nosso Mode. *user* é parametro que contém informações do usuário, desta forma conseguimos realizar
+     * varias modificações antes de salvar nosso usuário no banco.
+     */
+
+    this.addHook('beforeSave', async user => {
+      if (user.password) {
+        user.password_hash = await bcryptjs.hash(user.password, 8);
+      }
+    });
+
+    return this;
   }
 }
 
