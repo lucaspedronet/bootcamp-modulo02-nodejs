@@ -40,7 +40,11 @@ class User extends Model {
 
     return this;
   }
-
+  /**
+   * O método bcryptjs.`compare()` retorna *true* caso o password seja o mesmo que this.password_hash
+   * caso contário retorna *false*
+   * O `compare()` é uma function assícrona e qundo nós chamarmos devemos utilizar o `await`.
+   */
   checkPassword(password) {
     return bcryptjs.compare(password, this.password_hash);
   }
