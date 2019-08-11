@@ -12,6 +12,10 @@ export default async (req, res, next) => {
     return res.status(401).json({ error: 'Token not privaider!' });
   }
 
+  /**
+   * @example na linha 18 a const authHeader duas string *Bearer eyJhbGciOiJIUzI1...* separadas por espaço
+   * daí a necessidade de utilizar o `split(' ')` separar-las e pegar apenas o token.
+   */
   const [, token] = authHeader.split(' ');
 
   try {
@@ -24,7 +28,8 @@ export default async (req, res, next) => {
     const decoded = await promisify(jwt.verify)(token, authConfug.secret);
 
     /**
-     * @variation req.userId uma nova variável criada em tempo de execução, que vai armazenar o id do user
+     * @variation req.userId uma nova variável criada em tempo de execução, que vai
+     * armazenar o id do usuário dentro da requisição na variável *req.userId*
      */
     req.userId = decoded.id;
 
