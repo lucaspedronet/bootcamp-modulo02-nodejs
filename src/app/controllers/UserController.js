@@ -19,7 +19,7 @@ class UserController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Error campos obrigatórios' });
+      return res.status(400).json({ error: 'Validation fails' });
     }
 
     const emailExists = await User.findOne({
@@ -46,10 +46,13 @@ class UserController {
         .when('oldPassword', (oldPassword, field) => {
           return oldPassword ? field.required() : field;
         }),
+      confirmPassword: Yup.string().when('password', (password, field) => {
+        return password ? field.required().oneOf([Yup.ref('password')]) : field;
+      }),
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Error campos obrigatórios' });
+      return res.status(400).json({ error: 'Validation fails' });
     }
 
     const { email, oldPassword } = req.body;
