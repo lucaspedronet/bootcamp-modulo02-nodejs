@@ -4,7 +4,7 @@ module.exports = {
     node: true
   },
   extends: ['airbnb-base', 'prettier'],
-  plugins: ['rettier'],
+  plugins: ['prettier'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly'
@@ -14,7 +14,7 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
-    'rettier/rettier': 'error',
+    'prettier/prettier': 'error',
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
     camelcase: 'off',

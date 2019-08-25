@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {
@@ -34,13 +32,14 @@ module.exports = {
         allowNull: false,
       },
       updated_at: {
-        // campo que favá o controle de version registra todas as alterações.
+        // campo que fará o controle de version registra todas as alterações.
         type: Sequelize.DATE,
         allowNull: false,
       },
     });
   },
 
+  // eslint-disable-next-line no-unused-vars
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('users');
   },

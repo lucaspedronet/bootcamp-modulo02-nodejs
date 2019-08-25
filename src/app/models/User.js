@@ -40,6 +40,7 @@ class User extends Model {
 
     return this;
   }
+
   /**
    * O método bcryptjs.`compare()` retorna *true* caso o password seja o mesmo que this.password_hash
    * caso contário retorna *false*
